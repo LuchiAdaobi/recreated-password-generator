@@ -45,14 +45,13 @@ function generatePassword(upper, lower, number, symbol, length) {
   const typeArr = [{ upper }, { lower }, { number }, { symbol }].filter(
     (item) => Object.values(item)[0]
   );
-  console.log(typeArr);
 
   // if no boxes are checked don't run function
   if (typeCount === 0) {
     return '';
   }
 
-  // loop over each and call generator function for each type
+  // loop through each type and call random generator function
   for (let i = 0; i < length; i += typeCount) {
     typeArr.forEach((type) => {
       const funcName = Object.keys(type)[0];
@@ -78,7 +77,6 @@ generateEl.addEventListener('click', () => {
 
   //   get checked values
   const hasUpper = uppercaseEl.checked;
-  console.log(hasUpper);
   const hasLower = lowercaseEl.checked;
   const hasNumbers = numbersEl.checked;
   const hasSymbols = symbolsEl.checked;
@@ -99,7 +97,7 @@ generateEl.addEventListener('click', () => {
     inputs.forEach((input) => {
       input.addEventListener('click', () => {
         resultEl.innerText = generatePassword(
-          null,
+          hasUpper,
           hasLower,
           hasNumbers,
           hasSymbols,
